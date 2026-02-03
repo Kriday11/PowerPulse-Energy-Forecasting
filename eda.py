@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Define path dynamically
+# Defining path dynamically
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 file = os.path.join(BASE_DIR, '../data/individual+household+electric+power+consumption/household_power_consumption.txt')
 
@@ -24,8 +24,7 @@ for col in df.columns:
     if col != 'datetime':
         df[col] = pd.to_numeric(df[col], errors='coerce')
 
-# Now you can continue with plotting/EDA
-
+# plotting/EDA
 
 # Plot 1: Line plot of Global Active Power over time
 plt.figure(figsize=(10, 5))
@@ -51,21 +50,21 @@ plt.title('Sub Metering Distribution')
 plt.tight_layout()
 plt.show()
 
-# ========== Plot 1: Missing Values Heatmap ==========
+# --- Plot 1: Missing Values Heatmap ---
 plt.figure(figsize=(10, 4))
 sns.heatmap(df.isnull(), cbar=False, cmap='viridis')
 plt.title("Missing Values Heatmap")
 plt.tight_layout()
 plt.show()
 
-# ========== Plot 2: Correlation Matrix ==========
+# --- Plot 2: Correlation Matrix ---
 plt.figure(figsize=(10, 6))
 sns.heatmap(df.corr(), annot=True, fmt=".2f", cmap='coolwarm')
 plt.title("Correlation Between Features")
 plt.tight_layout()
 plt.show()
 
-# ========== Plot 3: Global Active Power Over Time ==========
+# --- Plot 3: Global Active Power Over Time ---
 plt.figure(figsize=(15, 4))
 plt.plot(df['datetime'], df['Global_active_power'], color='blue', linewidth=0.5)
 plt.title("Global Active Power Over Time")
@@ -74,7 +73,7 @@ plt.ylabel("Global Active Power (kilowatts)")
 plt.tight_layout()
 plt.show()
 
-# ========== Plot 4: Sub-Metering Over Time ==========
+# --- Plot 4: Sub-Metering Over Time ---
 plt.figure(figsize=(15, 4))
 plt.plot(df['datetime'], df['Sub_metering_1'], label='Sub_metering_1')
 plt.plot(df['datetime'], df['Sub_metering_2'], label='Sub_metering_2')
@@ -109,3 +108,4 @@ plt.tight_layout()
 plt.show()
 
 plt.savefig('../outputs/daily_avg_power.png', dpi=300)
+
